@@ -1,24 +1,25 @@
 import java.io.*;
 import java.util.*;
 import java.lang.Math.*;
-    
-public class j01001_hinhchunhat {
+
+public class j01016_chuso4vachuso7 {
     public static void main(String[] args) throws IOException {
         File inputFile = new File("E:/OneDrive - ptit.edu.vn/pro/dsa/input.txt");
         if (inputFile.exists()) {
             System.setIn(new FileInputStream("E:/OneDrive - ptit.edu.vn/pro/dsa/input.txt"));
             System.setOut(new PrintStream("E:/OneDrive - ptit.edu.vn/pro/dsa/output.txt"));
         }
-        FastScanner sc = new FastScanner();
+        FastScanner sc = new FastScanner(); 
 
-        int a = sc.nint(), b = sc.nint();
-        if (a <= 0 || b <= 0) {
-            System.out.println("0");
-            return;
+        String s = sc.readline();
+        int cnt4 = 0, cnt7 = 0;
+        for (char c : s.toCharArray()) {
+            if (c == '4') 
+                cnt4++;
+            if (c == '7') 
+                cnt7++;
         }
-        long area = a * b;
-        long perimeter = 2 * (a + b);
-        System.out.println(perimeter + " " + area);
+        System.out.println((cnt4 + cnt7 == 4 || cnt4 + cnt7 == 7) ? "YES" : "NO");
     }
 
     static class FastScanner {

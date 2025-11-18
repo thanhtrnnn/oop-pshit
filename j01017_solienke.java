@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.*;
 import java.lang.Math.*;
-    
-public class j01001_hinhchunhat {
+
+public class j01017_solienke {
     public static void main(String[] args) throws IOException {
         File inputFile = new File("E:/OneDrive - ptit.edu.vn/pro/dsa/input.txt");
         if (inputFile.exists()) {
@@ -11,14 +11,20 @@ public class j01001_hinhchunhat {
         }
         FastScanner sc = new FastScanner();
 
-        int a = sc.nint(), b = sc.nint();
-        if (a <= 0 || b <= 0) {
-            System.out.println("0");
-            return;
+        int t = sc.nint();
+        while (t-- > 0) {
+            boolean valid = true;
+            String n = sc.next();
+            for (int i = 0; i < n.length() - 1; i++) {
+                char curr = n.charAt(i);
+                char next = n.charAt(i + 1);
+                if (Math.abs(curr - next) != 1) {
+                    valid = false;
+                    break;
+                }
+            }
+            System.out.println(valid ? "YES" : "NO");
         }
-        long area = a * b;
-        long perimeter = 2 * (a + b);
-        System.out.println(perimeter + " " + area);
     }
 
     static class FastScanner {

@@ -1,24 +1,28 @@
 import java.io.*;
 import java.util.*;
 import java.lang.Math.*;
-    
-public class j01001_hinhchunhat {
-    public static void main(String[] args) throws IOException {
-        File inputFile = new File("E:/OneDrive - ptit.edu.vn/pro/dsa/input.txt");
-        if (inputFile.exists()) {
-            System.setIn(new FileInputStream("E:/OneDrive - ptit.edu.vn/pro/dsa/input.txt"));
-            System.setOut(new PrintStream("E:/OneDrive - ptit.edu.vn/pro/dsa/output.txt"));
-        }
-        FastScanner sc = new FastScanner();
 
-        int a = sc.nint(), b = sc.nint();
-        if (a <= 0 || b <= 0) {
-            System.out.println("0");
-            return;
+public class j07021_chuanhoaxauhotentrongfile {
+    public static void main(String[] args) throws IOException {
+        File inputFile = new File("DATA.in");
+        Scanner sc = new Scanner(inputFile);
+
+        while (true) {
+            String[] parts = sc.nextLine().trim().toLowerCase().split("[' ']+");
+            if (parts.length == 0) 
+                continue;
+            if (parts[0].equals("end")) {
+                sc.close();
+                break;
+            }
+
+            StringBuilder finalName = new StringBuilder();
+            for (String part : parts) {
+                finalName.append(Character.toUpperCase(part.charAt(0)))
+                        .append(part.substring(1)).append(" ");
+            }
+            System.out.println(finalName.toString().trim());
         }
-        long area = a * b;
-        long perimeter = 2 * (a + b);
-        System.out.println(perimeter + " " + area);
     }
 
     static class FastScanner {
@@ -48,6 +52,14 @@ public class j01001_hinhchunhat {
         int[] aint() {
             String s = readline();
             return Arrays.stream(s.split(" ")).mapToInt(Integer::parseInt).toArray();
+        }
+
+        boolean hasNextLine() {
+            try {
+                return br.ready();
+            } catch (IOException e) {
+                return false;
+            }
         }
     }
 }

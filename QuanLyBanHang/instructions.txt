@@ -1,0 +1,24 @@
+Viết chương trình quản lý bán hàng trong siêu thị theo mô tả sau:
+
+Thông tin về Mặt hàng gồm các thuộc tính (mã hàng, Tên hàng, Nhóm hàng, Giá bán) – trong đó Nhóm hàng có thể là: Hàng thời trang, Hàng tiêu dùng, Hàng điện máy, Hàng gia dụng.  Mã hàng là một số nguyên có 4 chữ số, tự động tăng
+
+Thông tin về Khách hàng (mã KH, Họ tên, địa chỉ, Số ĐT), mã KH là một số nguyên có 5 chữ số, tự động tăng. 
+
+Bổ sung Bảng Danh sách mua hàng trong đó với mỗi khách hàng, nhập danh sách các mặt hàng và số lượng mà khách hàng đó mua. Giả sử mỗi khách hàng không mua quá 10 loại mặt hàng một lần.  
+
+Tự xác định các lớp cho phù hợp và viết chương trình có giao diện (có thể dùng kéo thả) thực hiện các chức năng sau:
+
+Nhập thêm mặt hàng mới vào file MH.TXT. Có xử lý ngoại lệ. Hiển thị ra Bảng danh sách các mặt hàng đã có trong file.   
+Nhập thêm khách hàng vào file KH.TXT. Có xử lý ngoại lệ.  Hiển thị ra Bảng danh sách khách hàng đã có trong file.      
+Lập Bảng danh sách mua hàng cho từng khách hàng, lưu vào file QLBH.TXT và in danh sách ra màn hình (chú ý: cùng một khách hàng với một mặt hàng thì không thể xuất hiện 2 lần trong bảng này). 
+Sắp xếp danh sách Bảng danh sách mua hàng đã lưu trong QLBH.TXT      
+Theo tên khách hàng  
+Theo tên mặt hàng
+Lập hóa đơn chi tiết cho mỗi khách hàng.
+Lưu ý:
+
+Chương trình bắt buộc phải lập trình giao diện (Java GUI), có thể sử dụng kéo thả. Các chức năng có lựa chọn thì phải sử dụng hộp chọn
+Phải xử lý đầy đủ các ngoại lệ khi nhập dữ liệu và các ngoại lệ được yêu cầu trong đề bài. VD: Bỏ trống không nhập, sai định dạng, giá trị âm với dữ liệu số
+Tự thiết kế các lớp liên quan và phải mô tả đúng quan hệ giữa các lớp
+Kết quả phải hiển thị dạng bảng
+Nén project thành file zip và nộp,có thể bao gồm các file input/output hoặc không
