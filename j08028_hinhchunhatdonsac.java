@@ -29,8 +29,7 @@ public class j08028_hinhchunhatdonsac {
         while(T-->0){
             long[] a = new long[n];
             for(int i=0;i<n;i++){
-                if(T==1) a[i]=arr[i];
-                else a[i]=m-arr[i];
+                a[i] = (T == 1) ? arr[i] : m - arr[i];
             }
 
             int[] l = new int[n];
@@ -47,5 +46,6 @@ public class j08028_hinhchunhatdonsac {
             res = Math.max(res, ans);
         }
         System.out.println(res);
+        sc.close();
     }
 }

@@ -1,87 +1,75 @@
+import java.io.*;
 import java.util.*;
 
 public class j06001_tinhtoanhoadonbanquanao {
-    static String stdName(String s) {
-        String[] n = s.toLowerCase().trim().split("\\s+");
-        String r = "";
-        for (int i = 0; i < n.length; i++) {
-            r = r + Character.toString(n[i].charAt(0)).toUpperCase() + n[i].substring(1) + " ";
-        }
-        return r;
-    }
-
-    static class stuff {
+    static class product {
         String code, name;
-        int l1, l2;
+        Long price1, price2;
 
-        public stuff(String m, String n, int x, int y) {
-            code = m;
-            name = n;
-            l1 = x;
-            l2 = y;
-        }
-
-        public boolean isStuff(String c) {
-            return c.startsWith(code);
-        }
-
-        public int getPrice(String s) {
-            if (s.charAt(2) == '1')
-                return l1;
-            return l2;
-        }
-    }
-    
-    static class bill {
-        String code, name;
-        int cnt, off, sum, fin;
-
-        public bill(int i, String c, String name, int count, int price) {
-            code = c + '-' + String.format("%03d", i);
+        public product(String code, String name, Long price1, Long price2) {
+            this.code = code;
             this.name = name;
-            cnt = count;
-            sum = price * cnt;
-            if (cnt >= 150) {
-                off = sum / 2;
-            } else if (cnt >= 100) {
-                off = sum * 3 / 10;
-            } else if (cnt >= 50) {
-                off = sum * 15 / 100;
-            }else off = 0;
-                
-            fin = sum - off;
+            this.price1 = price1;
+            this.price2 = price2;
+        }
+
+        private Long getPrice(String c) {
+            return (c.charAt(2) == '1') ? price1 : price2;
+        }
+
+    }
+
+    static class bill {
+        String code, productName;
+        int quantity;
+        Long discount, total;
+
+        public bill(int i, String code, String name, int quantity, Long price) {
+            this.code = code + String.format("-%03d", i);
+            this.productName = name;
+            this.quantity = quantity;
+            this.total = price * quantity;
+            this.discount = calculateDiscount();
+            this.total -= discount;
+        }
+
+        private Long calculateDiscount() {
+            return (this.quantity >= 150) ? Math.round(0.5 * this.total)
+                    : (this.quantity >= 100) ? Math.round(0.3 * this.total)
+                            : (this.quantity >= 50) ? Math.round(0.15 * this.total) : 0;
         }
 
         @Override
         public String toString() {
-            return code + ' ' + name + ' ' + off + ' ' + fin;
+            return code + " " + productName + " " + discount + " " + total;
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        File inputFile = new File("E:/OneDrive - ptit.edu.vn/pro/dsa/input.txt");
+        if (inputFile.exists()) {
+            System.setIn(new FileInputStream(inputFile));
+            System.setOut(new PrintStream("E:/OneDrive - ptit.edu.vn/pro/dsa/output.txt"));
+        }
         Scanner sc = new Scanner(System.in);
+
         int n = sc.nextInt();
-        ArrayList<stuff> a = new ArrayList<>();
+        ArrayList<product> a = new ArrayList<>();
+        ArrayList<bill> b = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             sc.nextLine();
-            a.add(new stuff(sc.nextLine(), sc.nextLine(), sc.nextInt(), sc.nextInt()));
+            a.add(new product(sc.nextLine(), sc.nextLine(), sc.nextLong(), sc.nextLong()));
         }
+
         int m = sc.nextInt();
-        ArrayList<bill> b = new ArrayList<>();
-        for (int i = 1; i <= m; i++) {
+        for (int i = 0; i < m; i++) {
+            sc.nextLine();
             String code = sc.next();
-            int cnt = sc.nextInt();
-            stuff x = a.get(0);
-            for (int j = 0; j < n; j++) {
-                if (a.get(j).isStuff(code)) {
-                    x = a.get(j);
-                    break;
-                }
-            }
-            b.add(new bill(i, code, x.name, cnt, x.getPrice(code)));
+            product x = a.stream().filter(p -> code.startsWith(p.code)).findFirst().get();
+            b.add(new bill(i + 1, code, x.name, sc.nextInt(), x.getPrice(code)));
         }
-        b.forEach(e -> {
-            System.out.println(e);
-        });
+
+        b.forEach(System.out::println);
+        sc.close();
     }
 }
