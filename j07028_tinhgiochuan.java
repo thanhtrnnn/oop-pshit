@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class giochuan{
+public class j07028_tinhgiochuan {
     static class MH{
         String code, name;
         public MH(String code, String name){
@@ -61,5 +61,8 @@ public class giochuan{
             hm2.get(code1).sum += sc3.nextDouble();
         }
         a.forEach(e -> System.out.println(e));
+        sc1.close();
+        sc2.close();
+        sc3.close();
     }
 }

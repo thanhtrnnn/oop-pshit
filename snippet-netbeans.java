@@ -27,6 +27,4 @@ public class ${name} {
         a.forEach(System.out::println);
         sc.close();
     }
-} {
-    
 }
