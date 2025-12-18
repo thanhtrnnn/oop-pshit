@@ -2,3 +2,5 @@ ref/
 test*.java
 Test*.java
 *.class
+/B23DCAT280/nbproject/private/
+/B23DCAT280/build/
