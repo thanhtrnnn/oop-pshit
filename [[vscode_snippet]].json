@@ -126,5 +126,50 @@
 			"}"
 		],
 		"description": "paste this at your own java.json"
+	},
+	"Name Std": {
+		"prefix": "stdname",
+		"body": [
+			"static String stdName(String name) {",
+			"\tString res = new String();",
+			"\tString[] w = name.trim().toLowerCase().split(\"\\\\s+\");",
+			"\tfor (int i = 0; i < w.length; i++) {",
+			"\t\tres += w[i].substring(0, 1).toUpperCase() + w[i].substring(1) + \" \";",
+			"\t}",
+			"\treturn res.trim();",
+			"}"
+		],
+		"description": "Standardize name"
+	},
+	"Date Std": {
+		"prefix": "datestd",
+		"body": [
+			"static String stdDate(String date) {",
+			"\tString[] d = date.split(\"/\");",
+			"\tif (d[0].length() == 1) d[0] = \"0\" + d[0];",
+			"\tif (d[1].length() == 1) d[1] = \"0\" + d[1];",
+			"\tif (d[2].length() == 2) d[2] = \"20\" + d[2];",
+			"\treturn d[0] + \"/\" + d[1] + \"/\" + d[2];",
+			"}"
+		],
+		"description": "Standardize date"
+	},
+	"For up snippet": {
+		"prefix": "forup",
+		"body": [
+			"for (int i = 0; i < $1; i++) {",
+			"    $2",
+			"}"
+		],
+		"description": "for loop snippet"
+	},
+	"For down snippet": {
+		"prefix": "fordown",
+		"body": [
+			"for (int i = $1 - 1; i >= 0; i--) {",
+			"    $2",
+			"}"
+		],
+		"description": "for loop snippet"
 	}
 }
